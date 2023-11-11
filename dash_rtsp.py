@@ -9,7 +9,6 @@ model_addr = 'best.pt'
 
 
 cap = cv2.VideoCapture(rtsp_addr)
-cap.set(cv2.CAP_PROP_FPS, 5)
 
 model = YOLO(model_addr)
 
