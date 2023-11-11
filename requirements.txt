@@ -1,0 +1,4 @@
+dash
+opencv-python
+ultralytics
+flask
