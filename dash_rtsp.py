@@ -4,15 +4,20 @@ from ultralytics import YOLO
 from flask import Flask, Response
 import cv2
 
-rtsp_addr = r'rtsp://admin:A1234567@188.170.176.190:8029/Streaming/Channels/102?transportmode=unicast&profile=Profile_1'
+# введите адрес видеопотока в переменную rtsp_addr
+rtsp_addr = r'rtsp://admin:A1234567@188.170.176.190:8029/Streaming/Channels/102?transportmode=unicast&profile=Profile_1
+
+
+# путь к модели
 model_addr = 'best.pt'
 
-
+# открываеам видеопоток
 cap = cv2.VideoCapture(rtsp_addr)
 
+# загружаем модель
 model = YOLO(model_addr)
 
-
+# функция возвращает поток распознанных кадров
 def gen(camera):
     while True:
         success, img = camera.read()
@@ -32,7 +37,7 @@ def video_feed():
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 app.layout = html.Div([
-    html.H1("Webcam Test"),
+    html.H1("CCTV cam vendor detection"),
     html.Img(src="/video_feed")
 ])
 
